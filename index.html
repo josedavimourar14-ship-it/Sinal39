@@ -2,113 +2,56 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>SINAL 39 — ARQUIVO ANTIGO</title>
+  <title>SINAL 39</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../style.css">
+  <meta name="build-freq" content="3037">
+  <link rel="stylesheet" href="style.css">
+  <!--
+    eco de uma thread antiga, arquivada por precaução: /eco.html
+  -->
 </head>
 <body>
   <main>
-    <div class="timestamp">PASTA RECUPERADA — ACESSO NÃO INDEXADO</div>
+    <div class="timestamp">REGISTRO 004 — TRANSMISSÃO NÃO IDENTIFICADA</div>
 
-    <h1><span class="glyph"></span>conversas arquivadas</h1>
+    <h1><span class="glyph"></span>SINAL 39</h1>
 
-    <p>Três capturas de tela foram encontradas junto a este arquivo. Ninguém confirmou se são reais.</p>
-
-    <div class="chat">
-      <div class="chat-label">#registros-estranhos — servidor privado</div>
-      <div class="msg">
-        <div class="avatar">MR</div>
-        <div class="msg-body">
-          <div class="msg-name">maré.baixa</div>
-          <div class="msg-text">alguém mais ouviu aquilo nessa madrugada? anotei aqui, foi dia 15/10</div>
-        </div>
-      </div>
-      <div class="msg">
-        <div class="avatar">KV</div>
-        <div class="msg-body">
-          <div class="msg-name">kv_92</div>
-          <div class="msg-text">não foi dia 15 não, foi no sábado — 17</div>
-        </div>
-      </div>
-      <div class="msg">
-        <div class="avatar">DL</div>
-        <div class="msg-body">
-          <div class="msg-name">delfos.rec</div>
-          <div class="msg-text">17/10 mesmo, eu tenho o horário certinho salvo</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="chat">
-      <div class="chat-label">captura — rede social, conta apagada depois</div>
-      <div class="msg">
-        <div class="avatar">NT</div>
-        <div class="msg-body">
-          <div class="msg-name">@nortept</div>
-          <div class="msg-text">vi gente falando que foi 16/10, mas tenho print de antes, foi um dia depois</div>
-        </div>
-      </div>
-    </div>
-
-    <p class="system">Uma das pessoas lembra a data errada. As outras duas corrigem. Confie na maioria.</p>
-
-    <p>Digite a data mencionada (formato DD/MM):</p>
-    <input type="text" id="senha" placeholder="DD/MM" maxlength="5">
-    <br>
-    <button onclick="verificar()">Confirmar</button>
-    <div class="error-msg" id="erro"></div>
-
-    <div id="revelado" class="hidden-note">
-      <p class="system">A data estava certa. O sinal continua.</p>
-      <p><a href="../final.html" style="color: var(--phosphor);">→ ir para o registro final</a></p>
-    </div>
+    <p class="system">Em 1987, a frequência 39.1 FM transmitia apenas estática.</p>
+    <p>Em 2003, um operador amador gravou sete segundos de voz no meio do ruído. Ninguém nunca identificou a origem.</p>
+    <p>Desde então, o Sinal reaparece a cada poucos anos — sempre em outubro, sempre pedindo a mesma coisa: ouvintes.</p>
+    <p class="system">Você está ouvindo agora.</p>
 
     <div class="log">
-      &gt; existe um segundo arquivo aqui, sobre a origem do Sinal.<br>
-      &gt; <a href="../dossie.html" style="color: var(--phosphor-dim);">dossie.html</a>
+      &gt; registro cifrado (César, deslocamento de 3):<br>
+      &gt; RXYLQWH
     </div>
 
-    <p>Segundo o dossiê: em que ano a primeira gravação de voz foi capturada? (responda só com os dois últimos dígitos)</p>
-    <input type="text" id="riddle" placeholder="00" maxlength="2">
+    <p>Decodifique e digite a palavra revelada:</p>
+    <input type="text" id="palavra1" placeholder="________" maxlength="12">
     <br>
-    <button onclick="verificarRiddle()">Confirmar</button>
-    <div class="error-msg" id="erroRiddle"></div>
-    <div id="fragmentoC" class="hidden-note">
-      <p class="system">Fragmento C registrado: <b>03</b></p>
+    <button onclick="verificarFase1()">Confirmar</button>
+    <div class="error-msg" id="erroFase1"></div>
+
+    <div id="linkFase2" class="hidden-note">
+      <p class="system">Correto. A transmissão continua em outra frequência.</p>
+      <p><a href="ouvinte.html" style="color: var(--phosphor);">→ ouvinte.html</a></p>
     </div>
   </main>
 
   <script>
-    // TROQUE "17/10" pela data que você definiu na Fase 4 do seu design.
-    const SENHA_CORRETA = "17/10";
+    const PALAVRA1_CORRETA = "OUVINTE";
 
-    function verificar() {
-      const valor = document.getElementById("senha").value.trim();
-      const erro = document.getElementById("erro");
-      const revelado = document.getElementById("revelado");
+    function verificarFase1() {
+      const valor = document.getElementById("palavra1").value.trim().toUpperCase();
+      const erro = document.getElementById("erroFase1");
+      const link = document.getElementById("linkFase2");
 
-      if (valor === SENHA_CORRETA) {
+      if (valor === PALAVRA1_CORRETA) {
         erro.textContent = "";
-        revelado.style.display = "block";
+        link.style.display = "block";
       } else {
-        erro.textContent = "data incorreta. ouça de novo.";
-        revelado.style.display = "none";
-      }
-    }
-
-    const RIDDLE_CORRETO = "03";
-
-    function verificarRiddle() {
-      const valor = document.getElementById("riddle").value.trim();
-      const erro = document.getElementById("erroRiddle");
-      const frag = document.getElementById("fragmentoC");
-
-      if (valor === RIDDLE_CORRETO) {
-        erro.textContent = "";
-        frag.style.display = "block";
-      } else {
-        erro.textContent = "não é isso. releia o dossiê.";
-        frag.style.display = "none";
+        erro.textContent = "não é essa palavra.";
+        link.style.display = "none";
       }
     }
   </script>
