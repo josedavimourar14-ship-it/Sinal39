@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>SINAL 39 — CÓDIGO DE ATIVAÇÃO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <div class="timestamp">ACESSO RESTRITO — REGISTRO NÃO CATALOGADO</div>
+
+    <h1><span class="glyph"></span>código de ativação</h1>
+
+    <p>Três diagnósticos foram deixados por quem documentou o Sinal antes de você. Nenhum deles está no texto — todos estão no código.</p>
+
+    <div class="log">
+      &gt; diagnóstico 1: escondido na primeira página (frequência, em hexadecimal)<br>
+      &gt; diagnóstico 2: escondido perto do áudio da segunda página (em binário)<br>
+      &gt; diagnóstico 3: a resposta certa sobre a origem do Sinal
+    </div>
+
+    <p>Junte os três números, nessa ordem, sem espaços:</p>
+    <input type="text" id="codigo" placeholder="000000" maxlength="6">
+    <br>
+    <button onclick="verificarCodigo()">Ativar</button>
+    <div class="error-msg" id="erroCodigo"></div>
+
+    <div id="video-area" class="hidden-note">
+      <p class="system">Transmissão recuperada.</p>
+      <video controls style="width:100%; margin-top:1rem; filter:sepia(0.2);">
+        <source src="assets/transmissao-emergencia.mp4" type="video/mp4">
+        Seu navegador não suporta vídeo.
+      </video>
+      <p style="margin-top:1.5rem;">Há algo escondido em um único quadro deste vídeo — visível apenas pausando quadro a quadro. Quem encontrar, encontra mais do que devia.</p>
+    </div>
+  </main>
+
+  <script>
+    const CODIGO_CORRETO = "071403"; // 07 (hex da freq) + 14 (binário) + 03 (dossiê)
+
+    function verificarCodigo() {
+      const valor = document.getElementById("codigo").value.trim();
+      const erro = document.getElementById("erroCodigo");
+      const video = document.getElementById("video-area");
+
+      if (valor === CODIGO_CORRETO) {
+        erro.textContent = "";
+        video.style.display = "block";
+      } else {
+        erro.textContent = "código incorreto. os diagnósticos estão no código-fonte, não no texto.";
+        video.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>

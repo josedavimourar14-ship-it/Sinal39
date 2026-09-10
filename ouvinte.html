@@ -14,6 +14,7 @@
 
     <p class="system">Isto foi gravado em uma fita danificada. Ouça com atenção — nem tudo que importa aqui é audível.</p>
 
+    <!-- diag: 00110001 00110100 -->
     <audio controls>
       <source src="assets/registro-011.mp3" type="audio/mpeg">
       Seu navegador não suporta áudio.
@@ -22,11 +23,39 @@
     <p>Sob a estática existe uma sequência de bipes. Conte curtos e longos — é código Morse. A palavra que ele forma é a chave da próxima cifra.</p>
 
     <div class="log">
-      &gt; mensagem interceptada, cifrada:<br><br>
-      ZRUDRKKM B AMUMXZF XAPOIHASS ET XNSOE SCXZZI QO NMLT
+      &gt; mensagem interceptada, cifrada (Vigenère):<br><br>
+      VRLXKF
     </div>
 
-    <p class="system">Decifre com a chave que você ouviu (ou melhor — que você viu).</p>
+    <p class="system">Decifre com a chave que você ouviu (ou melhor — que você viu). O resultado é o nome de uma pasta.</p>
+
+    <input type="text" id="palavra2" placeholder="________" maxlength="12">
+    <br>
+    <button onclick="verificarFase2()">Confirmar</button>
+    <div class="error-msg" id="erroFase2"></div>
+
+    <div id="linkFase3" class="hidden-note">
+      <p class="system">Correto. Uma pasta antiga foi localizada.</p>
+      <p><a href="arquivo-antigo/" style="color: var(--phosphor);">→ arquivo-antigo/</a></p>
+    </div>
   </main>
+
+  <script>
+    const PALAVRA2_CORRETA = "ANTIGO";
+
+    function verificarFase2() {
+      const valor = document.getElementById("palavra2").value.trim().toUpperCase();
+      const erro = document.getElementById("erroFase2");
+      const link = document.getElementById("linkFase3");
+
+      if (valor === PALAVRA2_CORRETA) {
+        erro.textContent = "";
+        link.style.display = "block";
+      } else {
+        erro.textContent = "não é essa palavra.";
+        link.style.display = "none";
+      }
+    }
+  </script>
 </body>
 </html>
