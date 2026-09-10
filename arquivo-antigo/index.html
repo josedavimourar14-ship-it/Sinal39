@@ -62,6 +62,20 @@
       <p class="system">A data estava certa. O sinal continua.</p>
       <p><a href="../final.html" style="color: var(--phosphor);">→ ir para o registro final</a></p>
     </div>
+
+    <div class="log">
+      &gt; existe um segundo arquivo aqui, sobre a origem do Sinal.<br>
+      &gt; <a href="../dossie.html" style="color: var(--phosphor-dim);">dossie.html</a>
+    </div>
+
+    <p>Segundo o dossiê: em que ano a primeira gravação de voz foi capturada? (responda só com os dois últimos dígitos)</p>
+    <input type="text" id="riddle" placeholder="00" maxlength="2">
+    <br>
+    <button onclick="verificarRiddle()">Confirmar</button>
+    <div class="error-msg" id="erroRiddle"></div>
+    <div id="fragmentoC" class="hidden-note">
+      <p class="system">Fragmento C registrado: <b>03</b></p>
+    </div>
   </main>
 
   <script>
@@ -79,6 +93,22 @@
       } else {
         erro.textContent = "data incorreta. ouça de novo.";
         revelado.style.display = "none";
+      }
+    }
+
+    const RIDDLE_CORRETO = "03";
+
+    function verificarRiddle() {
+      const valor = document.getElementById("riddle").value.trim();
+      const erro = document.getElementById("erroRiddle");
+      const frag = document.getElementById("fragmentoC");
+
+      if (valor === RIDDLE_CORRETO) {
+        erro.textContent = "";
+        frag.style.display = "block";
+      } else {
+        erro.textContent = "não é isso. releia o dossiê.";
+        frag.style.display = "none";
       }
     }
   </script>
